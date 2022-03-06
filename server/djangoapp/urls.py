@@ -10,7 +10,7 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
     # path(route='', view=views.get_dealerships(), name='index'),
-    path(route='', view=views.get_dealerships, name='Index'),
+    #     path(route='', view=views.get_dealerships, name='Index'),
     
 
     # path for about view
@@ -27,14 +27,15 @@ urlpatterns = [
     path(route='login', view=views.login_request, name='Login'), 
 
     # path for logout
-    path(route='logout', view=views.logout_request, name='Logout'), 
+    path(route='logout', view=views.logout_request, name='Logout'),
 
 
-    path(route='', view=views.get_dealerships, name='index')
 
     # path for dealer reviews view
 
     # path for add a review view
+    path(route='', view=views.get_dealerships(), name='index')
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
