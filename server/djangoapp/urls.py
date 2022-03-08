@@ -21,20 +21,22 @@ urlpatterns = [
     path(route='contact', view=views.contact, name='Contact Us'), 
 
     # path for registration
-    path(route='registration', view=views.registration_request, name='Registration'), 
+    # path(route='registration_request', view=views.registration_request, name='Registration'), 
+    path(route='registration_page', view=views.registration_page, name='Registration'),
+    path(route='registration_request', view=views.registration_request, name='Registration Req'),
 
     # path for login
-    path(route='login', view=views.login_request, name='Login'), 
+    path(route='login_request', view=views.login_request, name='Login'), 
 
     # path for logout
-    path(route='logout', view=views.logout_request, name='Logout'),
+    path(route='logout_request', view=views.logout_request, name='Logout'),
 
 
 
     # path for dealer reviews view
 
     # path for add a review view
-    path(route='', view=views.get_dealerships(), name='index')
+    path(route='', view=views.get_dealerships, name='index')
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
