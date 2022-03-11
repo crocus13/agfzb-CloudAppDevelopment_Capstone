@@ -101,14 +101,14 @@ def registration_request(request):
     context = {}
     # If it is a GET request, just render the registration page
     if request.method == 'GET':
-        return render(request, 'djangoapp/registration.html', context)
+        return render(request, 'djangoapp/user_registration.html', context)
     # If it is a POST request
     elif request.method == 'POST':
         # Get user information from request.POST
         username = request.POST['username']
-        password = request.POST['psw']
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
+        password = request.POST['psw']
         user_exist = False
         try:
             # Check if user already exists
@@ -124,11 +124,16 @@ def registration_request(request):
                                             password=password)
             # Login the user and redirect to course list page
             login(request, user)
-            # return redirect("onlinecourse:popular_course_list")
+            # return redirect("djangoapp:index")
             return HttpResponseRedirect('/djangoapp/')
 
         else:
-            return render(request, 'djangoapp/registration.html', context)
+            return render(request, 'djangoapp/user_registration.html', context)
+            # return redirect("onlinecourse:popular_course_list")
+            # return HttpResponseRedirect('/djangoapp/')
+            
+        # else:
+        #     return render(request, 'djangoapp/user_registration.html', context)
 
 
 
