@@ -4,32 +4,36 @@ from .models import CarModel, CarMake
 
 
 # Register your models here.
-class CarMakeAdmin(admin.ModelAdmin):
-    fields = ['name', 'description']
-    admin.site.register(CarMake, CarMakeAdmin)
-    admin.site.register(CarModel)
+# class CarMakeAdmin(admin.ModelAdmin):
+#     fields = ['name', 'description']
+#     admin.site.register(CarMake, CarMakeAdmin)
+#     admin.site.register(CarModel)
 
 
 # CarModelInline class
-class CarModelInline(admin.StackedInline):
-    model = CarModel
-    extra = 5
+# class CarModelInline(admin.StackedInline):
+#     model = CarModel
+#     extra = 5
 
-# # CarModelAdmin class
-class CarModelAdmin(admin.ModelAdmin):
-    fields = ['name', 'year', 'carmake', 'dealerId', 'type']
-    admin.site.register(CarModel, CarModelAdmin)
+# # # CarModelAdmin class
+# class CarModeladmin(admin.ModelAdmin):
+#     fields = ['name', 'year', 'carMake', 'dealerId', 'type']
+#     admin.site.register(CarModel, CarModelAdmin)
+    
 
 
 
 
 # CarMakeAdmin class with CarModelInline
-class CarMakeAdmin(admin.ModelAdmin):
-    fields = ['name', 'description']
-    admin.site.register(CarMake, CarMakeAdmin)
-    inlines = [CarModelInline]
+# class CarMakeAdmin(admin.ModelAdmin):
+#     fields = ['name', 'description']
+#     admin.site.register(CarMake,CarMakeAdmin)
+#     inlines = [CarModelInline]
 
-# Register models here
+# # Register models here
 
-admin.site.register(CarMake, CarMakeAdmin)
-admin.site.register(CarModel, CarModelAdmin)
+# admin.site.register(CarMake, CarMakeAdmin)
+# admin.site.register(CarModel, CarModelAdmin)
+
+# admin.site.register(CarMake)
+# admin.site.register(CarModel)

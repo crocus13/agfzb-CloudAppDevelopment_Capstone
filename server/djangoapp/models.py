@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
+# from django.conf import settings
+# import uuid
 
 
 # Create your models here.
@@ -11,9 +13,9 @@ from django.utils.timezone import now
 # - __str__ method to print a car make object
 class CarMake(models.Model):
     # CharField for Name
-    Name = models.CharField(null=False, max_length=30, default='Honda ')
+    name = models.CharField(null=False, max_length=30, default='Honda ')
     # CharField for Description
-    Description = models.CharField(null=False, max_length=200, default='Fuel efficient')
+    description = models.CharField(null=False, max_length=200, default='Fuel efficient')
 
     def __str__(self):
         return "Name: " + self.name + ", " + "Description: " + self.description
@@ -63,6 +65,31 @@ class CarModel(models.Model):
 
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
+class CarDealer:
 
+    def __init__(self, address, city, full_name, state,id, lat, long, short_name, st, zip):
+        # Dealer address
+        self.address = address
+        # Dealer city
+        self.city = city
+        # Dealer Full Name
+        self.full_name = full_name
+        # Dealer id
+        self.id = id
+        # Location lat
+        self.lat = lat
+        # Location long
+        self.long = long
+        # Dealer short name
+        self.short_name = short_name
+        # Dealer st
+        self.st = st
+        # Dealer zip
+        self.zip = zip
+        # Dealer state
+        self.state = state
+
+    def __str__(self):
+        return "Dealer name: " + self.full_name
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
