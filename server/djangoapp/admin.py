@@ -11,24 +11,26 @@ from .models import CarModel, CarMake
 
 
 # CarModelInline class
-# class CarModelInline(admin.StackedInline):
-#     model = CarModel
-#     extra = 5
+class CarModelInline(admin.StackedInline):
 
-# # # CarModelAdmin class
-# class CarModeladmin(admin.ModelAdmin):
-#     fields = ['name', 'year', 'carMake', 'dealerId', 'type']
-#     admin.site.register(CarModel, CarModelAdmin)
+    model = CarModel
+    extra = 5
+
+# # CarModelAdmin class
+class CarModelAdmin(admin.ModelAdmin):
+    fields = ['name', 'year', 'carMake', 'dealerId', 'type']
+admin.site.register(CarModel, CarModelAdmin)
     
 
 
 
 
 # CarMakeAdmin class with CarModelInline
-# class CarMakeAdmin(admin.ModelAdmin):
-#     fields = ['name', 'description']
-#     admin.site.register(CarMake,CarMakeAdmin)
-#     inlines = [CarModelInline]
+class CarMakeAdmin(admin.ModelAdmin):
+    fields = ['name', 'description']
+    inlines = [CarModelInline]
+admin.site.register(CarMake,CarMakeAdmin)
+   
 
 # # Register models here
 
