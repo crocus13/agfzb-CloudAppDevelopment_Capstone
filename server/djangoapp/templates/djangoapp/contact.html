@@ -16,7 +16,7 @@
 		height: 400px;
 	}
 	.col-md-3{
-		background: #ff9b00;
+        background:darkcyan;
 		padding: 4%;
 		border-top-left-radius: 0.5rem;
 		border-bottom-left-radius: 0.5rem;
@@ -26,10 +26,23 @@
 	}
 	.contact-info img{
 		margin-bottom: 15%;
+        margin-left: 42%;
 	}
 	.contact-info h2{
 		margin-bottom: 10%;
-	}
+        text-align: center;
+
+    }
+    .contact-info h4{
+        font-family: Lucida Sans;
+        text-align: center;
+
+    }    
+    .contact-into address{
+
+        font-family: Lucida Sans;
+        font-weight:80;
+    }
 	.col-md-9{
 		background: #fff;
 		padding: 3%;
@@ -38,6 +51,7 @@
 	}
 	.contact-form label{
 		font-weight:600;
+
 	}
 	.contact-form button{
 		background: #25274d;
@@ -48,27 +62,51 @@
 	.contact-form button:focus{
 		box-shadow:none;
 	}
+
+    </style>
     </style>
 </head> 
 <body> 
 
     <!-- <h1>Contact Us</h1> -->
-
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
+                aria-expanded="false" aria-controls="collapsable">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse d-flex flex-row justify-content-between">
+            <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
+                <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
+                                                                                                class="nav-link"> Home </a>
+                </li>
+                <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
+                                                                                                     class="nav-link">
+                    About </a></li>
+                <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
+                        href="/djangoapp/contact"
+                        class="nav-link">
+                    Contact Us </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     
+
     <div class="container contact">
         <div class="row">
             <div class="col-md-3">
                 <div class="contact-info">
                     <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
                     <h2>Contact Us</h2>
-                    <h4>We would love to hear from you !</h4>
-                     <address> 
-                        Address:<br>
-                        Box 564, Los Angeles, USA,95005<br><br>
-                        Email: Example.com<br>
-                        Phone: +2314650789
-                        </address> 
+                    <h4>We would love to hear from you!</h4>
+                     
                 </div>
+                <address> 
+                    Address Info:<br>
+                    Box 564, Los Angeles, USA,95005<br><br>
+                    Email: Example.com<br><br>
+                    Phone: +2314650789
+                    </address> 
             </div>
             <div class="col-md-9">
                 <div class="contact-form">

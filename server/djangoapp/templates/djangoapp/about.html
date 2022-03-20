@@ -4,10 +4,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <meta charset="UTF-8"> 
     <title>Product Review</title> 
+    <style>
+        body{background-color:midnightblue;
+               
+        }
+
+        .container-about{color:floralwhite;
+                     text-align:center; 
+                     margin-bottom:40%;
+                     margin-top:20%; }
+         
+        h1{font: weight 600px;}
+
+    </style>    
 </head> 
 <body> 
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
+                aria-expanded="false" aria-controls="collapsable">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse d-flex flex-row justify-content-between">
+            <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
+                <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
+                                                                                                class="nav-link"> Home </a>
+                </li>
+                <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
+                                                                                                     class="nav-link">
+                    About </a></li>
+                <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
+                        href="/djangoapp/contact"
+                        class="nav-link">
+                    Contact Us </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.</h1> 
+
+<div class="container-about">
+<h1>Welcome to Best Cars dealership!</h1><br> 
+ <h3>Home to the best cars in North America. We sell domestic and imported cars at reasonable prices.</h3> 
+<div>
 </body> 
 </html>
 

@@ -6,16 +6,90 @@
 
     <meta charset="UTF-8">
     <title>Registration</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            /* background-color:rgb(97, 105, 83); */
+           background-color:rgb(63, 75, 97);
+
+            color:white;
+        }
+        .p-2 {color:white; 
+
+         }
+        
+    </style>
 </head>
 <body>
 
 <!-- Add a Navigation bar -->
 
+         <!-- <div class="d-flex justify-content-start">
+            <div class="navbar-brand">Dealership Review</div>
+            <div class="p-2"><a href="#">Home</a></div>
+            <div class="p-2"><a href="#">about</a></div>
+            <div class="p-2"><a href="#">contact</a></div>
+          </div>  -->
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
+                    aria-expanded="false" aria-controls="collapsable">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse d-flex flex-row justify-content-between">
+                <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
+                    <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
+                                                                                                    class="nav-link"> Home </a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
+                                                                                                         class="nav-link">
+                        About </a></li>
+                    <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
+                            href="/djangoapp/contact"
+                            class="nav-link">
+                        Contact Us </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
 <!-- Stylize Registration form -->
 
  <!-- <div class="p-3 mb-2 bg-light text-dark">  -->
 
-<form action="{% url 'djangoapp:registration' %}" method="post">
+
+
+
+
+
+
+
+  <!-- <form action="{% url 'djangoapp:registration' %}" method="post">
+    <div class="container"> --><!--Style root div with .container class -->
+     <!-- {% csrf_token %}
+      <h1>Sign Up</h1>
+      <hr>
+      <div class="form-group"> --><!--Style second div with .form-group class -->
+
+       <!--  <label for="username"><b>User Name</b></label>
+          <input type="text" class="form-control" placeholder="Enter User Name: " name="username" required> --><!--Style input with .form-control class -->
+          <!--<label for="firstname"><b>First Name</b></label>
+          <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname" required>--> <!--Style input with .form-control class -->
+        <!--  <label for="lastname"><b>Last Name</b></label>
+          <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname" required>--> <!--Style input with .form-control class -->
+         <!--<label for="psw"><b>Password</b></label>
+          <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required> --><!--Style input with .form-control class -->
+        <!-- {% if message %}
+          <div class="alert alert-warning"> --> <!--Style the message paragraph with .alert and .alert-warning class -->
+           <!--  {{ message }}
+          </div>
+          {% endif %}
+          <button class="btn btn-primary" type="submit">Sign Up</button> --> <!--Style button with .btn and .btn-primary class -->
+      <!-- </div>
+    </div>
+  </form>  -->
+  <form action="{% url 'djangoapp:registration' %}" method="post">
     <div class="container"> <!--Style root div with .container class -->
 
       {% csrf_token %}
@@ -47,50 +121,19 @@
             <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required> <!--Style input with .form-control class -->
           </div>
 
-          {% if message %}
+           {% if message %}
           <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
               {{ message }}
           </div>
-          {% endif %}
+          {% endif %} 
 
           <div class="col-sm-10">
-          <button class="btn btn-primary" type="submit">Sign Up</button> <!--Style button with .btn and .btn-primary class -->
+          <button class="text-white bg-dark" type="submit">Sign Up</button> <!--Style button with .btn and .btn-primary class -->
           </div>
       </div>
     </div>
 
   </form>
-
-
-
-
-
-
-
-  <!-- <form action="{% url 'djangoapp:registration' %}" method="post">
-    <div class="container"> --><!--Style root div with .container class -->
-     <!-- {% csrf_token %}
-      <h1>Sign Up</h1>
-      <hr>
-      <div class="form-group"> --><!--Style second div with .form-group class -->
-
-       <!--  <label for="username"><b>User Name</b></label>
-          <input type="text" class="form-control" placeholder="Enter User Name: " name="username" required> --><!--Style input with .form-control class -->
-          <!--<label for="firstname"><b>First Name</b></label>
-          <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname" required>--> <!--Style input with .form-control class -->
-        <!--  <label for="lastname"><b>Last Name</b></label>
-          <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname" required>--> <!--Style input with .form-control class -->
-         <!--<label for="psw"><b>Password</b></label>
-          <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required> --><!--Style input with .form-control class -->
-        <!-- {% if message %}
-          <div class="alert alert-warning"> --> <!--Style the message paragraph with .alert and .alert-warning class -->
-           <!--  {{ message }}
-          </div>
-          {% endif %}
-          <button class="btn btn-primary" type="submit">Sign Up</button> --> <!--Style button with .btn and .btn-primary class -->
-      </div>
-    </div>
-  </form> 
 
 
 
