@@ -140,9 +140,7 @@ def get_dealerships(request):
     # url = "https://53c4f092.eu-gb.apigw.appdomain.cloud/api/dealerships"
         url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/dealership"
         dealerships = get_dealers_from_cf(url)
-        context["dealership_list"] = dealerships
-        # return HttpResponse(dealership_list)
-
+        context["dealer-table"] = dealerships
         return render(request, 'djangoapp/index.html', context)
 
 
@@ -157,3 +155,7 @@ def get_dealerships(request):
 
 
 
+# def get_dealerships(request):
+#     if request.method == "GET":
+#         context = {}
+#         return render(request, 'djangoapp/index.html', context)
