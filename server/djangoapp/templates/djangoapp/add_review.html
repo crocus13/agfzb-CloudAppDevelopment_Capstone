@@ -12,5 +12,47 @@
 </head>
     <body>
     <!--Add review form here -->
+    <h1 class="wv-heading--title">
+        Add a review aout Sub-Ex Car Dealership
+     </h1>
+                   
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <div class="auth-form form ">
+                        <!-- <form class="needs-validation" action="add_review_request" method="POST" name="add-review" novalidate -->
+                            <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
+                                {% csrf_token %}
+
+                            <div class="form-group form-floating">
+                                <label for="review">Enter the review content:</label>
+    
+                                <textarea name="review" class="form-control" rows="2" id="review"
+                                          style="height:100px" placeholder="This is a great car dealer" required></textarea>
+                                
+                                          <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+    
+    
+                                <select name="car" id="car" class="form-select" required>
+                                            {% for car in cars %}
+                                                <option selected value={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
+                                            {% endfor %}
+                                </select>
+    
+                                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
+    
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+    </body>
+    
+    <script type="text/javascript">
+        $('.date-own').datepicker({
+           format: 'mm/dd/yyyy'
+         });
+    </script>
     </body>
 </html>
