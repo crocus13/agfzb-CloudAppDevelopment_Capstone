@@ -174,9 +174,36 @@ def get_dealer_details(request, dealer_id):
 
 
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
+def add_review(request, dealer_id):
+    context = {}
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['pwd']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                  # Redirect to index page.
+                return redirect("djangoapp:add_review")
+            else:
+                return HttpResponse("User is not authenticated.")
+        else:    
+            return render(request, 'djangoapp/user_login.html', context)
+    else:
+        return render(request, 'djangoapp/user_login.html', context)
 
+        review["id"] = id
+        review["dealership"] = dealership
+        review["name"] = name
+        review["purchase"] = purchase
+        review["review"] = review
+        review["purchase_date"] = datetime.utcnow().isoformat()
+        review["car_make"] = car_make
+        review["car_model"] = car_model
+        review["car_year"] = car_year
+        
+        json_payload["review"] = review
+    results.append(review)
 
 
 # def get_dealerships(request):
