@@ -12,7 +12,6 @@ from .models import CarModel, CarMake
 
 # CarModelInline class
 class CarModelInline(admin.StackedInline):
-
     model = CarModel
     extra = 5
 
@@ -35,7 +34,7 @@ admin.site.register(CarMake,CarMakeAdmin)
 # # Register models here
 
 # admin.site.register(CarMake, CarMakeAdmin)
-# admin.site.register(CarModel, CarModelAdmin)
+# admin.site.register(CarModel,CarMakeAdmin)
 
 # admin.site.register(CarMake)
 # admin.site.register(CarModel)
