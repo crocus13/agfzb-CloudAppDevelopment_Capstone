@@ -11,16 +11,18 @@ from django.utils.timezone import now
 # - Description
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
+
 class CarMake(models.Model):
     # CharField for Name
-    name = models.CharField(null=False, max_length=30, default='Honda ')
+    name = models.CharField(null=False, max_length=30, default='Honda')
     # CharField for Description
     description = models.CharField(null=False, max_length=200, default='Fuel efficient')
 
     def __str__(self):
-        return "Name: " + self.name + ", " + "Description: " + self.description
+        return "Name: " + self.name + ", " + \
+            "Description: " + self.description
 
-    id = models.AutoField(primary_key=True) 
+    # id = models.AutoField(primary_key=True) 
 
 
 
@@ -46,21 +48,22 @@ class CarModel(models.Model):
         (SUV, 'SUV'),
         (WAGON, 'Wagon')
     ]
-    name = models.CharField(null=False, max_length=50, default='850')
     carMake = models.ForeignKey(CarMake, null=True, on_delete=models.CASCADE)
-    dealerId = models.IntegerField()
+    name = models.CharField(null=False, max_length=50, default='850')
+    # carmake = models.ForeignKey(CarMake, null=True, on_delete=models.CASCADE)
+    dealerId = models.IntegerField(null=True)
     type = models.CharField(null=False, max_length=20, choices=TYPE_CHOICES, default=SEDAN)
     year = models.DateField(null=True)
 
     def __str__(self):
 
-        return "Name: " + self.name + "," + \
-            "CarMake: " + str(self.carMake) + "," + \
-            "DealerId: " + str(self.dealerId) + "," + \
-            "Type: " + self.type + "," + \
+        return  "Name: " + self.name + ", " + \
+            "CarMake: " + str(self.carMake) + ", " + \
+            "DealerId: " + str(self.dealerId) + ", " + \
+            "Type: " + self.type + ", " + \
             "Year: " + str(self.year)
 
-    id = models.AutoField(primary_key=True) 
+    # id = models.AutoField(primary_key=True) 
 
 
 
@@ -90,7 +93,7 @@ class CarDealer:
         self.state = state
 
     def __str__(self):
-        return "full_name: " + self.full_name + "," + \
+        return "Dealer name: " + self.full_name + "," + \
             "address: " + self.address + "," + \
             "city: " + self.city + "," + \
             "id: " + self.id + "," + \

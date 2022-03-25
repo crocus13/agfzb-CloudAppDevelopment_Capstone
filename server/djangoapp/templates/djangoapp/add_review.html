@@ -12,47 +12,45 @@
 </head>
     <body>
     <!--Add review form here -->
-    <h1 class="wv-heading--title">
-        Add a review aout Sub-Ex Car Dealership
-     </h1>
+    
                    
-            <div class="row">
-                <div class="col-md-4 mx-auto">
-                    <div class="auth-form form ">
-                        <!-- <form class="needs-validation" action="add_review_request" method="POST" name="add-review" novalidate -->
-                            <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
-                                {% csrf_token %}
-
-                            <div class="form-group form-floating">
-                                <label for="review">Enter the review content:</label>
-    
-                                <textarea name="review" class="form-control" rows="2" id="review"
-                                          style="height:100px" placeholder="This is a great car dealer" required></textarea>
-                                
-                                          <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
-    
-    
-                                <select name="car" id="car" class="form-select" required>
-                                            {% for car in cars %}
-                                                <option selected value={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
-                                            {% endfor %}
-                                </select>
-    
-                                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
-    
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            }
-                        </form>
-                    </div>
+     <div class="container">
+        <h1 class="wv-heading--title">
+            Add a review about Best Cars Dealership
+         </h1>
+        {% for dealer in dealers %}
+            <form action="/djangoapp/dealer/{{dealer.id}}/add_review/" method="post">
+                {% csrf_token %}
+        {% endfor %}
+                <div class="form-group">
+                    <label for="content">Enter the review content:</label>
+                    <textarea class="form-control" id="content" name="content" rows="2" placeholder="This is a great car dealer" required></textarea>
                 </div>
-            </div>
-        
-    </body>
-    
-    <script type="text/javascript">
-        $('.date-own').datepicker({
-           format: 'mm/dd/yyyy'
-         });
-    </script>
+                <div class="form-group form-check">
+                    <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                    <label for="purchasecheck">Has purchased the car from Best Cars Dealership? (select purchased car information below if checked)</label>
+                </div>
+                <div class="form-group">
+                    <label for="car">Select your car (model-make-year):</label>
+                    <select name="car" id="car" class="form-select">
+                        {% for car in cars %}
+                            <option selected value={{car.id}}>{{car.name}}-{{car.car_make.name}}-{{ car.year|date:"Y" }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group" data-provide="datepicker">
+                    <label for="purchasedate">Select Your Purchase Date:</label>
+                    <input class="form-control" type="text" name="purchasedate" id="purchasedate">
+                </div>
+               <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            $('.date-own').datepicker({
+               format: 'mm/dd/yyyy'
+             });
+       </script>
+       
     </body>
 </html>
