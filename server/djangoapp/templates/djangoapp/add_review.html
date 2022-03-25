@@ -11,6 +11,71 @@
 
 </head>
     <body>
+ <!-- Add navbar here -->
+ <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+              <a class="navbar-brand" href="#">Best Cars</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+           
+            <li>
+                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                 <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                 <form class="form-inline" action="{% url 'djangoapp:login' %}" method="POST">
+                     {% csrf_token %} 
+                    <div class="input-group">
+                         <input type="text" class="form-control" placeholder="Username" name="username" >
+                         <input type="password" class="form-control" placeholder="Password" name="psw" >
+                         <button class="btn btn-primary" type="submit">Login</button>
+                         <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a> 
+                    </div>
+                    
+                 </form> 
+
+                
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
+            aria-expanded="false" aria-controls="collapsable">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse d-flex flex-row justify-content-between">
+        <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
+            <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
+                                                                                            class="nav-link"> Home </a>
+            </li>
+            <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
+                                                                                                 class="nav-link">
+                About </a></li>
+            <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
+                    href="/djangoapp/contact"
+                    class="nav-link">
+                Contact Us </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
     <!--Add review form here -->
     
                    
@@ -51,6 +116,6 @@
                format: 'mm/dd/yyyy'
              });
        </script>
-       
+
     </body>
 </html>
