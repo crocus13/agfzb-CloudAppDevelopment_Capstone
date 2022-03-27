@@ -18,6 +18,10 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
+                <li>
+                    <a class="nav-link" href = "{%url 'djangoapp:add_review'%}">Add Review</a>
+                    <!-- <a class="nav-link" style="color: rgb(43, 238, 238);" href="add_review/"> Add Review</a> -->
+                </li>
                
                 <li>
                      <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
