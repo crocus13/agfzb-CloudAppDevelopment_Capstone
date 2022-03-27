@@ -3,9 +3,9 @@ import json
 from .models import CarMake,CarModel
 from requests.auth import HTTPBasicAuth
 from .models import CarDealer,DealerReview
-# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-# from ibm_watson import NaturalLanguageUnderstandingV1
-# from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
 # import time
 
 # Create a `get_request` to make HTTP GET requests
@@ -114,6 +114,43 @@ def analyze_review_sentiments(text):
 
     return(label) 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def analyze_review_sentiments(text):
+#     api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt"
+#     url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d"
+#     texttoanalyze= text
+#     version = '2020-08-01'
+#     authenticator = IAMAuthenticator(api_key)
+#     natural_language_understanding = NaturalLanguageUnderstandingV1(
+#     version='2020-08-01',
+#     authenticator=authenticator
+#     )
+#     natural_language_understanding.set_service_url(url)
+#     response = natural_language_understanding.analyze(
+#         text=text,
+#         features= Features(sentiment= SentimentOptions())
+#     ).get_result()
+#     print(json.dumps(response))
+#     sentiment_score = str(response["sentiment"]["document"]["score"])
+#     sentiment_label = response["sentiment"]["document"]["label"]
+#     print(sentiment_score)
+#     print(sentiment_label)
+#     sentimentresult = sentiment_label
+    
+#     return sentimentresult
 
 
 
