@@ -107,11 +107,11 @@ def get_dealerships(request):
 
      
 # Create a `get_dealer_details` view to render the reviews of a dealer
-def get_dealer_details(request, dealer_id):
+def get_dealer_details(request, dealerId):
     context = {}
     if request.method == "GET":
         url = 'https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review'
-        context = {"reviews":  restapis.get_dealer_reviews_by_id_from_cf(url, dealer_id)}
+        context = {"reviews":  restapis.get_dealer_reviews_by_id_from_cf(url, dealerId)}
         return render(request, 'djangoapp/dealer_details.html', context)
 
 
@@ -131,7 +131,9 @@ def add_review(request, dealer_id):
             form = request.POST
             review = {
                 "name": "{request.user.first_name} {request.user.last_name}",
-                "dealership": dealer_id,
+                # "dealership": dealer_id,
+                "dealership": dealerId,
+
                 "review": form["content"],
                 "purchase": form.get("purchasecheck"),
                 }
@@ -144,8 +146,12 @@ def add_review(request, dealer_id):
             json_payload = {"review": review}
             print (json_payload)
             url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
-            restapis.post_request(url, json_payload, dealerId=dealer_id)
-            return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
+            # restapis.post_request(url, json_payload, dealerId=dealer_id)
+            restapis.post_request(url, json_payload, dealerId=dealerId)
+            return redirect("djangoapp:dealer_details", dealerId=dealerId)
+
+
+            # return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
         else:
             return redirect("/djangoapp/user_login")
 

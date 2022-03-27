@@ -2,7 +2,7 @@ import requests
 import json
 from .models import CarMake,CarModel
 from requests.auth import HTTPBasicAuth
-from .models import CarDealer
+from .models import CarDealer,DealerReview
 # from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 # from ibm_watson import NaturalLanguageUnderstandingV1
 # from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
@@ -74,10 +74,10 @@ def get_dealer_reviews_by_id_from_cf(url, dealerId):
     results = []
     json_result = get_request(url, dealerId=dealerId)
     if json_result:
-        reviews = json_result['entries']
+        reviews = json_result["body"]["rows"]
         for review in reviews:
             review_doc = review["doc"]
-            review_obj = DealerReview(name=review_doc["name"],dealership = review_doc["dealership"], review = review_doc["review"], purchase=review_doc["purchase"],
+            review_obj = DealerReview(id=review_doc["id"],name=review_doc["name"],dealership = review_doc["dealership"], review = review_doc["review"], purchase=review_doc["purchase"],
                                     purchase_date = review_doc["purchase_date"], car_make = review_doc['car_make'],
                                     car_model = review_doc['car_model'], car_year= review_doc['car_year'], sentiment= "none")
             
