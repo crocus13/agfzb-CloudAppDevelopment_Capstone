@@ -2,11 +2,13 @@ import requests
 import json
 from .models import CarMake,CarModel
 from requests.auth import HTTPBasicAuth
-from .models import CarDealer,DealerReview
+# from .models import CarDealer,DealerReview
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
-# import time
+from . import models
+
+
 
 # Create a `get_request` to make HTTP GET requests
 def get_request(url, **kwargs):
