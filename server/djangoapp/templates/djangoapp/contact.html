@@ -66,31 +66,10 @@
     </style>
     </style>
 </head> 
+
 <body> 
 
-    <!-- <h1>Contact Us</h1> -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
-                aria-expanded="false" aria-controls="collapsable">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse d-flex flex-row justify-content-between">
-            <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
-                <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
-                                                                                                class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
-                                                                                                     class="nav-link">
-                    About </a></li>
-                <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
-                        href="/djangoapp/contact"
-                        class="nav-link">
-                    Contact Us </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
+    {% include 'navbar.html' %}
 
     <div class="container contact">
         <div class="row">
@@ -99,51 +78,59 @@
                     <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
                     <h2>Contact Us</h2>
                     <h4>We would love to hear from you!</h4>
-                     
                 </div>
-                <address> 
-                    Address Info:<br>
-                    Box 564, Los Angeles, USA,95005<br><br>
-                    Email: Example.com<br><br>
-                    Phone: +2314650789
-                    </address> 
-            </div>
-            <div class="col-md-9">
-                <div class="contact-form">
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="fname">First Name:</label>
-                      <div class="col-sm-10">          
-                        <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="lname">Last Name:</label>
-                      <div class="col-sm-10">          
-                        <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="email">Email:</label>
-                      <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="comment">Comment:</label>
-                      <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group">        
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
-                      </div>
+               
+                <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
+                        <div class="card-header">Contact Details</div>
+                            <div class="card-body">
+                               <h8 class="card-title">BestCars</h8>
+                                <p class="card-text"style="font-size:smaller;">Box 564, Los Angeles<br>
+                                California,USA-95005 <br><br> Phone:+2314650789 <br> <br> Email:best@cars.com </p>
+                            </div>
+                        </div>
+                </div>     
+            
+                <div class="col-md-9">
+                   <div class="contact-form">
+
+                        <div class="form-group">
+                           <label class="control-label col-sm-2" for="fname">First Name:</label>
+                            <div class="col-sm-10">          
+                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="lname">Last Name:</label>
+                            <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="comment">Comment:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">        
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+           </div>
         </div>
-    </div>
-    
+
 </body> 
 </html> 
 

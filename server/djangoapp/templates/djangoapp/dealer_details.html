@@ -74,7 +74,15 @@
     <!-- Add reviews as cards -->
     <div class="container" style="padding: 3%;">
         <div class="card-columns">
-            {% for review in reviews %}
+            <!-- {% for review in reviews %}
+                    {% if review.sentiment is None or review.sentiment == "neutral" %}
+                        {% define "neutral" as emoji %}
+                    {% elif review.sentiment == "negative" %}
+                        {% define "negative" as emoji %}
+                    {% else %}
+                        {% define "positive" as emoji %}
+                    {% endif %} -->
+
                 <div class="card" style="height: 300px; overflow: scroll; overflow-x: hidden;">
                     <img src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png" class="card-img-left" style="height: 100px; width: 100px; margin-left: 35%; margin-bottom: 5%; margin-top: 2%;">
                     <div class="card-body" style="text-align: center;">

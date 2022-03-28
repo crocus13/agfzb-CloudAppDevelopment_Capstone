@@ -19,32 +19,25 @@
     </style>    
 </head> 
 <body> 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark px-4" id="navigation">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable"
-                aria-expanded="false" aria-controls="collapsable">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse d-flex flex-row justify-content-between">
-            <ul class="collapse navbar-collapse navbar-nav mb-2 mb-lg-0 align-self-start" id="collapsable">
-                <li class="nav-item {% if request.path == '/djangoapp/' %}active{% endif %}"><a href="/djangoapp/"
-                                                                                                class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item {% if request.path == '/djangoapp/about' %}active{% endif %}"><a href="/djangoapp/about"
-                                                                                                     class="nav-link">
-                    About </a></li>
-                <li class="nav-item {% if request.path == '/djangoapp/contact' %}active{% endif %}"><a
-                        href="/djangoapp/contact"
-                        class="nav-link">
-                    Contact Us </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+
+    {% include 'navbar.html' %}
+
+    
 
 
 <div class="container-about">
 <h1>Welcome to Best Cars dealership!</h1><br> 
  <h3>Home to the best cars in North America. We sell domestic and imported cars at reasonable prices.</h3> 
+ <div class="card-body">
+    <!-- <h5 class="card-title">Our History:</h5> -->
+    <p class="card-text"style="text-align:center;">Our company is based on the belief that our customers' needs are of the utmost importance.<br>
+        Our entire team is committed to meeting those needs.As a result, a high percentage of our business is from repeat customers and referrals.<br>We would welcome the opportunity to earn your trust and deliver you the best service in the industry.</p>
+    </p>
+  </div>
+ 
+
+
+ 
 <div>
 </body> 
 </html>
