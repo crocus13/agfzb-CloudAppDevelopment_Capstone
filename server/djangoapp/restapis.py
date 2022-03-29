@@ -3,10 +3,10 @@ import json
 from .models import CarMake,CarModel
 from requests.auth import HTTPBasicAuth
 from .models import CarDealer,DealerReview
-# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-# from ibm_watson import NaturalLanguageUnderstandingV1
-# from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
-# from . import models
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
+from . import models
 
 
 
@@ -92,9 +92,13 @@ def post_request(url, json_payload, **kwargs):
 
 def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
-    dealerId = kwargs.get("dealerId")
-    if dealerId:
-        json_result = get_request(url, dealerId=dealerId)
+    # dealerId = kwargs.get("dealerId")
+    id = kwargs.get("id")
+
+    if id:
+        # json_result = get_request(url, dealerId=dealerId)
+        json_result = get_request(url, id=id)
+
     else:
         json_result = get_request(url)
 
@@ -104,12 +108,12 @@ def get_dealer_reviews_from_cf(url, **kwargs):
         for dealer_review in reviews:
             dealer_review = reviews["docs"][0]
 
-            review_obj = DealerReview(dealership=dealer_review["dealership"],dealerId=dealer_review["dealerId"],
+            review_obj = DealerReview(dealership=dealer_review["dealership"],id=dealer_review["id"],
                                name=dealer_review["name"],purchase_date=dealer_review["purchase_date"],
                                purchase=dealer_review["purchase"],car_make=dealer_review["car_make"],car_model=dealer_review["car_model"],
                                car_year=dealer_review["car_year"],review=dealer_review["review"])
-            if "dealerId" in dealer_review:
-                review_obj.id = dealer_review["dealerId"]
+            if "id" in dealer_review:
+                review_obj.id = dealer_review["id"]
             if "name" in dealer_review:
                 review_obj.name = dealer_review["name"]
             if "dealership" in dealer_review:
@@ -131,7 +135,6 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             print(sentiment)
             review_obj.sentiment = sentiment
             results.append(review_obj)
-
     return results
 
 

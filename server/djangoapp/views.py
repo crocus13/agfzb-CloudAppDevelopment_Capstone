@@ -108,7 +108,7 @@ def get_dealerships(request):
 
      
 # Create a `get_dealer_details` view to render the reviews of a dealer
-def get_dealer_details(request, dealerId):
+def get_dealer_details(request, id):
     context = {}
     if request.method == "GET":
         # url="https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?dealerId={0}"
@@ -116,7 +116,8 @@ def get_dealer_details(request, dealerId):
 
         url = 'https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review'
         # context = {"reviews":  restapis.get_dealer_reviews_by_id_from_cf(url, dealerId)}
-        review = get_dealer_reviews_by_id_from_cf(url, dealerId)
+        # review = get_dealer_reviews_by_id_from_cf(url, dealerId)
+        review = get_dealer_reviews_from_cf(url,id)
         context["reviews"] = review
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -127,8 +128,8 @@ def get_dealer_details(request, dealerId):
 # Create a `add_review` view to submit a review
 def add_review(request, dealerId):
     if request.method == "GET":
-        dealersid = dealerId
-        url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?dealerId={0}".format(dealersid)
+        dealersid = id
+        url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?id={0}".format(dealersid)
         # Get dealers from the URL
         context = {
             "cars": models.CarModel.objects.all(),
@@ -141,7 +142,7 @@ def add_review(request, dealerId):
             review = {
                 "name": "{request.user.first_name} {request.user.last_name}",
                 # "dealership": dealer_id,
-                "dealership": dealerId,
+                "dealership": id,
 
                 "review": form["content"],
                 "purchase": form.get("purchasecheck"),
@@ -156,8 +157,8 @@ def add_review(request, dealerId):
             print (json_payload)
             url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
             # restapis.post_request(url, json_payload, dealerId=dealer_id)
-            restapis.post_request(url, json_payload, dealerId=dealerId)
-            return redirect("djangoapp:dealer_details.html", dealerId=dealerId)
+            restapis.post_request(url, json_payload, id=id)
+            return redirect("djangoapp:dealer_details.html", id=id)
 
 
             # return redirect("djangoapp:dealer_details", dealer_id=dealer_id)

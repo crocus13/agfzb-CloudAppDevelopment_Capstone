@@ -22,7 +22,7 @@ class CarMake(models.Model):
         return "Name: " + self.name + ", " + \
             "Description: " + self.description
 
-    # id = models.AutoField(primary_key=True) 
+    id = models.AutoField(primary_key=True) 
 
 
 
@@ -63,7 +63,7 @@ class CarModel(models.Model):
             "Type: " + self.type + ", " + \
             "Year: " + str(self.year)
 
-    # id = models.AutoField(primary_key=True) 
+    id = models.AutoField(primary_key=True) 
 
 
 
