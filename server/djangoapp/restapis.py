@@ -3,9 +3,9 @@ import json
 from .models import CarMake,CarModel
 from requests.auth import HTTPBasicAuth
 from .models import CarDealer,DealerReview
-from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-from ibm_watson import NaturalLanguageUnderstandingV1
-from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
+# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+# from ibm_watson import NaturalLanguageUnderstandingV1
+# from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
 from . import models
 
 
@@ -149,25 +149,25 @@ def get_dealer_reviews_from_cf(url, **kwargs):
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
-def analyze_review_sentiments(text):
+# def analyze_review_sentiments(text):
 
-    url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d" 
+#     url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d" 
 
-    api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt" 
+#     api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt" 
 
-    authenticator = IAMAuthenticator(api_key) 
+#     authenticator = IAMAuthenticator(api_key) 
 
-    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator) 
+#     natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator) 
 
-    natural_language_understanding.set_service_url(url) 
+#     natural_language_understanding.set_service_url(url) 
 
-    response = natural_language_understanding.analyze( text=text,features=Features(sentiment=SentimentOptions(targets=[text]))).get_result() 
+#     response = natural_language_understanding.analyze( text=text,features=Features(sentiment=SentimentOptions(targets=[text]))).get_result() 
 
-    label=json.dumps(response, indent=2) 
+#     label=json.dumps(response, indent=2) 
 
-    label = response['sentiment']['document']['label'] 
+#     label = response['sentiment']['document']['label'] 
 
-    return(label) 
+#     return(label) 
 
 
 
