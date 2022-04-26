@@ -74,34 +74,17 @@ def post_request(url, json_payload, **kwargs):
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-# def get_dealer_reviews_by_id_from_cf(url, dealerId):
-#     results = []
-#     json_result = get_request(url, dealerId=dealerId)
-#     if json_result:
-#         reviews = json_result["body"]["rows"]
-#         for review in reviews:
-#             review_doc = review["doc"]
-#             review_obj = DealerReview(id=review_doc["id"],name=review_doc["name"],dealership = review_doc["dealership"], review = review_doc["review"], purchase=review_doc["purchase"],
-#                                     purchase_date = review_doc["purchase_date"], car_make = review_doc['car_make'],
-#                                     car_model = review_doc['car_model'], car_year= review_doc['car_year'], sentiment= "none")
-            
-#             review_obj.sentiment = analyze_review_sentiments(review_obj.review)
-#             print(review_obj.sentiment)
-                    
-#             results.append(review_obj)
 
-#     return results
 
 def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
     dealerId = kwargs.get("dealerId")
     # id = kwargs.get("id")
 
-    if dealerId:
+    if id:
         json_result = get_request(url, dealerId=dealerId)
         # dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
-
-
+        # json_result = get_request(url, id=id)
     else:
         json_result = get_request(url)
 
