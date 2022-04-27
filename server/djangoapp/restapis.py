@@ -78,13 +78,11 @@ def post_request(url, json_payload, **kwargs):
 
 def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
-    dealerId = kwargs.get("dealerId")
+    id = kwargs.get("id")
     # id = kwargs.get("id")
 
     if id:
-        json_result = get_request(url, dealerId=dealerId)
-        # dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
-        # json_result = get_request(url, id=id)
+        json_result = get_request(url, id=id)
     else:
         json_result = get_request(url)
 

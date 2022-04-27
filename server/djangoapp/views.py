@@ -109,18 +109,18 @@ def get_dealerships(request):
      
 # Create a `get_dealer_details` view to render the reviews of a dealer
 
-def get_dealer_details(request, dealerId):
+def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         context = {}
         dealer_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/dealership"
         # dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
-        dealer = get_dealer_by_id_from_cf(dealer_url, dealerId=dealerId)
+        dealer = get_dealer_by_id_from_cf(dealer_url, dealer_id=dealer_id)
 
         # dealer = get_request(url, id=id)
         context["dealer"] = dealer
         review_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review"
         # reviews = get_dealer_reviews_from_cf(review_url, id=id)
-        reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealerId)
+        reviews = get_dealer_reviews_from_cf(review_url, dealer_id=dealer_id)
         print(reviews)
         context["reviews"] = reviews
         return render(request, 'djangoapp/dealer_details.html', context)
