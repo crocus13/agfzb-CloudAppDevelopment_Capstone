@@ -6,7 +6,9 @@ from .models import CarDealer,DealerReview
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
-from . import models
+# from . import models
+import time
+
 
 
 
@@ -198,30 +200,30 @@ def analyze_review_sentiments(text):
 
 # Create a get_dealer_by_id_from_cf method to get dealers from a cloud function
 
-# def get_dealer_by_id_from_cf(url, **kwargs):
-#     results = []
-#     dealerId = kwargs.get("dealerId")
+def get_dealer_by_id_from_cf(url, **kwargs):
+    results = []
+    dealerId = kwargs.get("dealerId")
 
-#     if dealerId:
-#         json_result = get_request(url, dealerId=dealerId)
-#     else:
-#         json_result = get_request(url)
-#     # print(json_result)    
-#     if json_result:
-#         # Get the row list in JSON as dealers
-#         dealers = json_result["body"]["rows"]
-#         # For each dealer object
-#         for dealer in dealers:
-#             # Get its content in `doc` object
-#             dealer_doc = dealer["doc"]
-#             # print(dealer_doc)
-#             # Create a CarDealer object with values in `doc` object
-#             dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-#                                     id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-#                                     short_name=dealer_doc["short_name"],state=dealer_doc["state"],
-#                                     st=dealer_doc["st"], zip=dealer_doc["zip"])
-#             results.append(dealer_obj)
-#     return results
+    if dealerId:
+        json_result = get_request(url, dealerId=dealerId)
+    else:
+        json_result = get_request(url)
+    # print(json_result)    
+    if json_result:
+        # Get the row list in JSON as dealers
+        dealers = json_result["body"]["rows"]
+        # For each dealer object
+        for dealer in dealers:
+            # Get its content in `doc` object
+            dealer_doc = dealer["doc"]
+            # print(dealer_doc)
+            # Create a CarDealer object with values in `doc` object
+            dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
+                                    id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
+                                    short_name=dealer_doc["short_name"],state=dealer_doc["state"],
+                                    st=dealer_doc["st"], zip=dealer_doc["zip"])
+            results.append(dealer_obj)
+    return results
 
 
 

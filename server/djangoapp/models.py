@@ -1,7 +1,12 @@
 from django.db import models
 from django.utils.timezone import now
+from django.core import serializers
+import uuid
+import json
+
+
+
 # from django.conf import settings
-# import uuid
 
 
 # Create your models here.
