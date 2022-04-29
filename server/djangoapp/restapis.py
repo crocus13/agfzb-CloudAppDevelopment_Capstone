@@ -18,8 +18,7 @@ def get_request(url, **kwargs):
     print("GET from {} ".format(url))
     try:
         # Call get method of requests library with URL and parameters
-        response = requests.get(url, headers={'Content-Type': 'application/json'},
-                                    params=kwargs)
+        response = requests.get(url, headers={'Content-Type': 'application/json'},params=kwargs)
     except:
         # If any error occurs
         print("Network exception occurred")
@@ -27,6 +26,9 @@ def get_request(url, **kwargs):
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
     return json_data
+
+
+
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
 
@@ -56,32 +58,45 @@ def get_dealers_from_cf(url, **kwargs):
 
 
 
+# Create a get_dealer_by_id_from_cf method to get dealers from a cloud function
+
+def get_dealer_by_id_from_cf(url, **kwargs):
+    results = []
+    # dealerId = kwargs.get("dealerId")
+    id = kwargs.get("id")
+
+    if id:
+        json_result = get_request(url, id=id)
+    else:
+        json_result = get_request(url)
+    # print(json_result)    
+    if json_result:
+        # Get the row list in JSON as dealers
+        dealers = json_result["body"]["rows"]
+        # For each dealer object
+        for dealer in dealers:
+            # Get its content in `doc` object
+            dealer_doc = dealer["doc"]
+            # print(dealer_doc)
+            # Create a CarDealer object with values in `doc` object
+            dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
+                                    id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
+                                    short_name=dealer_doc["short_name"],state=dealer_doc["state"],
+                                    st=dealer_doc["st"], zip=dealer_doc["zip"])
+            results.append(dealer_obj)
+    return results
 
 
-
-
-# Create a `post_request` to make HTTP POST requests
-# e.g., response = requests.post(url, params=kwargs, json=payload)
-def post_request(url, json_payload, **kwargs):
-    json_obj = json_payload["review"]
-    print(kwargs)
-    try:
-        response = requests.post(url, json=json_obj, params=kwargs)
-    except:
-        print("Something went wrong")
-    print (response)
-    return response
 
 
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
 
-
 def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
+    # dealerId = kwargs.get("dealerId")
     id = kwargs.get("id")
-    # id = kwargs.get("id")
 
     if id:
         json_result = get_request(url, id=id)
@@ -126,6 +141,18 @@ def get_dealer_reviews_from_cf(url, **kwargs):
 
 
 
+# Create a `post_request` to make HTTP POST requests
+# e.g., response = requests.post(url, params=kwargs, json=payload)
+def post_request(url, json_payload, **kwargs):
+    json_obj = json_payload["review"]
+    print(kwargs)
+    try:
+        response = requests.post(url, json=json_obj, params=kwargs)
+    except:
+        print("Something went wrong")
+    print (response)
+    return response
+
 
 
 
@@ -155,75 +182,6 @@ def analyze_review_sentiments(text):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# def analyze_review_sentiments(text):
-#     api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt"
-#     url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d"
-#     texttoanalyze= text
-#     version = '2020-08-01'
-#     authenticator = IAMAuthenticator(api_key)
-#     natural_language_understanding = NaturalLanguageUnderstandingV1(
-#     version='2020-08-01',
-#     authenticator=authenticator
-#     )
-#     natural_language_understanding.set_service_url(url)
-#     response = natural_language_understanding.analyze(
-#         text=text,
-#         features= Features(sentiment= SentimentOptions())
-#     ).get_result()
-#     print(json.dumps(response))
-#     sentiment_score = str(response["sentiment"]["document"]["score"])
-#     sentiment_label = response["sentiment"]["document"]["label"]
-#     print(sentiment_score)
-#     print(sentiment_label)
-#     sentimentresult = sentiment_label
-    
-#     return sentimentresult
-
-
-
-
-
-
-
-
-# Create a get_dealer_by_id_from_cf method to get dealers from a cloud function
-
-def get_dealer_by_id_from_cf(url, **kwargs):
-    results = []
-    dealerId = kwargs.get("dealerId")
-
-    if dealerId:
-        json_result = get_request(url, dealerId=dealerId)
-    else:
-        json_result = get_request(url)
-    # print(json_result)    
-    if json_result:
-        # Get the row list in JSON as dealers
-        dealers = json_result["body"]["rows"]
-        # For each dealer object
-        for dealer in dealers:
-            # Get its content in `doc` object
-            dealer_doc = dealer["doc"]
-            # print(dealer_doc)
-            # Create a CarDealer object with values in `doc` object
-            dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-                                    id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                                    short_name=dealer_doc["short_name"],state=dealer_doc["state"],
-                                    st=dealer_doc["st"], zip=dealer_doc["zip"])
-            results.append(dealer_obj)
-    return results
 
 
 

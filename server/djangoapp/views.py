@@ -9,8 +9,8 @@ from django.contrib import messages
 from datetime import datetime
 import logging
 import json
-# from . import restapis
-# from . import models
+
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -109,18 +109,18 @@ def get_dealerships(request):
      
 # Create a `get_dealer_details` view to render the reviews of a dealer
 
-def get_dealer_details(request, dealer_id):
+def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
         dealer_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/dealership"
-        # dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
-        dealer = get_dealer_by_id_from_cf(dealer_url, dealer_id=dealer_id)
+        dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+        # dealer = get_dealer_by_id_from_cf(dealer_url, dealerId=dealerId)
 
-        # dealer = get_request(url, id=id)
-        context["dealer"] = dealer
+        dealer = get_request(url, id=id)
+        context["dealership_list"] = dealer
         review_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review"
-        # reviews = get_dealer_reviews_from_cf(review_url, id=id)
-        reviews = get_dealer_reviews_from_cf(review_url, dealer_id=dealer_id)
+        reviews = get_dealer_reviews_from_cf(review_url, id=id)
+        # reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealerId)
         print(reviews)
         context["reviews"] = reviews
         return render(request, 'djangoapp/dealer_details.html', context)
