@@ -29,17 +29,14 @@ urlpatterns = [
     # path for logout
     path(route='logout/', view=views.logout_request, name='logout'),
 
-
-
-    # path for dealer reviews view
-    
+     # path for dealer reviews view
     path(route='dealer/<int:id>/', view=views.get_dealer_details, name='dealer_details'),
     # path(route='dealer/<int:dealer_id>/', view=views.get_dealer_details, name='dealer_details'),
 
     # path for add a review view
-
     path(route='dealer/<int:id>/add_review/', view= views.add_review, name='add_review'),
-
+    
+    # path for dealership view
     path(route='', view=views.get_dealerships, name='index')
 
 
@@ -52,11 +49,3 @@ urlpatterns = [
 
 
 
-#     path(route='', view=views.CourseListView.as_view(), name='index'),
-# path('registration/', views.registration_request, name='registration'),
-# path('login/', views.login_request, name='login'),
-# path('logout/', views.logout_request, name='logout'),
-# # ex: /onlinecourse/5/
-# path('/', views.CourseDetailView.as_view(), name='course_details'),
-# # ex: /enroll/5/
-# path('/enroll/', views.enroll, name='enroll')

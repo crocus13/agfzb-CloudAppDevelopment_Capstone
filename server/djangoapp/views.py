@@ -21,11 +21,11 @@ logger = logging.getLogger(__name__)
 
 
 # Create an `about` view to render a static about page
-
 def about(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/about.html', context)
+
 
 
 
@@ -34,6 +34,7 @@ def contact(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/contact.html', context)
+
 
 
 # Create a `login_request` view to handle sign in request
@@ -58,8 +59,8 @@ def login_request(request):
         return render(request, 'djangoapp/user_login.html', context)
       
       
-# Create a `logout_request` view to handle sign in request
 
+# Create a `logout_request` view to handle sign in request
 def logout_request(request):
     # Get the user object based on session id in request
     print("Log out the user `{}`".format(request.user.username))
@@ -68,8 +69,8 @@ def logout_request(request):
     return HttpResponseRedirect('/djangoapp/') 
 
 
-# Create a `registration_request` view to handle sign up request
 
+# Create a `registration_request` view to handle sign up request
 def registration_request(request):
     context = {}
     if request.method == 'GET':
@@ -94,7 +95,8 @@ def registration_request(request):
         else:
             context['message'] = "User already exists."
             return render(request, 'djangoapp/user_registration.html', context)
-            
+
+
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):
@@ -107,8 +109,8 @@ def get_dealerships(request):
 
 
      
-# Create a `get_dealer_details` view to render the reviews of a dealer
 
+# Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, id):
     # context = {}
 
@@ -131,11 +133,12 @@ def get_dealer_details(request, id):
 
 
 
+
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
     if request.method == "GET":
         dealer_id = dealerId
-        url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?id={0}".format(dealersId)
+        url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?id={id}".format(dealersId)
         # Get dealers from the URL
         context = {
             "cars": models.CarModel.objects.all(),
