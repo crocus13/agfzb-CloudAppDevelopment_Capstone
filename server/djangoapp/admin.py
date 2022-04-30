@@ -11,9 +11,10 @@ class CarModelInline(admin.StackedInline):
 
 
 
+
 # # # CarModelAdmin class
-# class CarModelAdmin(admin.ModelAdmin):
-#     fields = ['name', 'year', 'carmake', 'dealerid', 'cartype']
+class CarModelAdmin(admin.ModelAdmin):
+    fields = ['name', 'year', 'carMake', 'dealerId', 'type']
 # admin.site.register(CarModel, CarModelAdmin)
     
 
@@ -22,7 +23,11 @@ class CarModelInline(admin.StackedInline):
 class CarMakeAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
 
+ 
+
 # Register your models here.
 admin.site.register(CarMake, CarMakeAdmin)
-# admin.site.register(CarModel, CarModelAdmin)
-admin.site.register(CarModel)
+admin.site.register(CarModel, CarModelAdmin)
+# admin.site.register(CarModel)
+
+
