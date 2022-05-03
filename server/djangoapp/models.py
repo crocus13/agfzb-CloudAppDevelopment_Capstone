@@ -20,25 +20,27 @@ import json
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 
-class CarMake(models.Model):
-    # CharField for Name
-    name = models.CharField(null=False, max_length=100, default='Make')
-    # CharField for Description
-    # description = models.CharField(null=False, max_length=500, default='Fuel efficient')
-    description = models.CharField(max_length=500)
+# class CarMake(models.Model):
+#     # CharField for Name
+#     name = models.CharField(null=False, max_length=100, default='Make')
+#     # CharField for Description
+#     # description = models.CharField(null=False, max_length=500, default='Fuel efficient')
+#     description = models.CharField(max_length=500)
 
-    def __str__(self):
-        return "Name: " + self.name + ", " + \
-            "Description: " + self.description
+#     def __str__(self):
+#         return "Name: " + self.name + ", " + \
+#             "Description: " + self.description
 
     # id = models.AutoField(primary_key=True) 
 
 
 
-# class CarMake(models.Model): name = models.CharField(null=False, max_length=100, default='Make') description = models.CharField(max_length=500)
+class CarMake(models.Model):
+    name = models.CharField(null=False, max_length=100, default='Make') 
+    description = models.CharField(max_length=500)
 
-# def __str__(self):
-#     return "Name: " + self.name
+    def __str__(self):
+        return "Name: " + self.name
 
 
 
