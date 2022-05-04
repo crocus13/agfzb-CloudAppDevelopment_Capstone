@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
-                     <a class="nav-link" href = "{%url 'djangoapp:add_review' %}">Add Review</a>   
+                     <a class="nav-link" href ="{%url 'djangoapp:dealer_details' id %}">Add Review</a>   
 
                 </li>
                
@@ -32,8 +32,8 @@
                      <form class="form-inline" action="{% url 'djangoapp:login' %}" method="POST">
                          {% csrf_token %} 
                         <div class="input-group">
-                             <input type="text" class="form-control" placeholder="Username" name="username" >
-                             <input type="password" class="form-control" placeholder="Password" name="psw" >
+                             <input type="text" class="form-control" placeholder="Username" name="username">
+                             <input type="password" class="form-control" placeholder="Password" name="psw">
                              <button class="btn btn-primary" type="submit">Login</button>
                              <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a> 
                         </div>

@@ -124,7 +124,6 @@ def get_dealer_details(request, id):
         # print(dealer)
         context["dealer"] = dealer
 
-        # review_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?id={id}"
         review_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review"
 
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
@@ -135,10 +134,7 @@ def get_dealer_details(request, id):
 
 
 
-
-
 # Create a `add_review` view to submit a review
-
 
 
 def add_review(request, id):
@@ -177,7 +173,9 @@ def add_review(request, id):
             new_payload["review"] = payload
             review_post_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
             post_request(review_post_url, new_payload, id=id)
-        return redirect("djangoapp:dealer_details", id=id)
+            # return redirect("djangoapp:dealer_details", id=id)
+        return redirect('djangoapp/dealer_details.html', id=id)
+
 
 
 
