@@ -174,43 +174,22 @@ def add_review(request, id):
             review_post_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
             post_request(review_post_url, new_payload, id=id)
             # return redirect("djangoapp:dealer_details", id=id)
-        return redirect('djangoapp/dealer_details.html', id=id)
+            return redirect('djangoapp/dealer_details.html', id=id)
 
 
 
 
-    # def add_review(request, dealer_id):
-    # if request.method == "GET":
-    #     dealer_id = dealerId
-    #     url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review?id={id}".format(dealersId)
-    #     # Get dealers from the URL
-    #     context = {
-    #         "cars": models.CarModel.objects.all(),
-    #         "dealers": restapis.get_dealers_from_cf(url),
-    #     }
-    #     return render(request, 'djangoapp/add_review.html', context)
-    # if request.method == "POST":
-    #     if request.user.is_authenticated:
-    #         form = request.POST
-    #         review = {
-    #             "name": "{request.user.first_name} {request.user.last_name}",
-    #             # "dealership": dealer_id,
-    #             "dealership": id,
 
-    #             "review": form["content"],
-    #             "purchase": form.get("purchasecheck"),
-    #             }
-    #         if form.get("purchasecheck"):
-    #             review["purchase_date"] = datetime.strptime(form.get("purchasedate"), "%m/%d/%Y").isoformat()
-    #             car = models.CarModel.objects.get(pk=form["car"])
-    #             review["car_make"] = car.carmake.name
-    #             review["car_model"] = car.name
-    #             review["car_year"]= car.year.strftime("%Y")
-    #         json_payload["review"] = review
-    #         print (json_payload)
-    #         url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
-    #         restapis.post_request(url, json_payload, dealerId=dealer_id)
-    #         # restapis.post_request(url, json_payload, id=id)
-    #         return redirect("djangoapp:dealer_details.html", dealerId=dealer_id)
-    #     else:
-    #         return redirect("/djangoapp/user_login.html")
+
+
+
+
+
+
+
+
+
+
+
+
+    
