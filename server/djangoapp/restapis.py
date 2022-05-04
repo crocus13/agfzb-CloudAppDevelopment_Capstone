@@ -240,12 +240,22 @@ def get_dealer_reviews_from_cf(url, **kwargs):
     if json_result:
         reviews = json_result["body"]["data"]["docs"]
         for dealer_review in reviews:
-            review_obj = DealerReview(dealership=dealer_review["dealership"],
-                                    name=dealer_review["name"],
-                                    purchase=dealer_review["purchase"],
-                                    review=dealer_review["review"])
+            # dealer_review = reviews["docs"][0]
+
+            review_obj = DealerReview(dealership=dealer_review["dealership"],id=dealer_review["id"],
+                                    name=dealer_review["name"],purchase_date=dealer_review["purchase_date"],
+                                    purchase=dealer_review["purchase"],car_make=dealer_review["car_make"],car_model=dealer_review["car_model"],
+                                    car_year=dealer_review["car_year"],review=dealer_review["review"])
             if "id" in dealer_review:
                 review_obj.id = dealer_review["id"]
+            if "name" in dealer_review:
+                review_obj.name = dealer_review["name"]
+            if "dealership" in dealer_review:
+                review_obj.dealership =dealer_review["dealership"]    
+            if "purchase" in dealer_review:
+                review_obj.purchase = purchase["purchase"]
+            if "review" in dealer_review:
+                review_obj.review =  dealer_review["review"]  
             if "purchase_date" in dealer_review:
                 review_obj.purchase_date = dealer_review["purchase_date"]
             if "car_make" in dealer_review:
@@ -255,6 +265,23 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             if "car_year" in dealer_review:
                 review_obj.car_year = dealer_review["car_year"]
 
+
+            
+            # review_obj = DealerReview(dealership=dealer_review["dealership"],
+            #                         name=dealer_review["name"],
+            #                         purchase=dealer_review["purchase"],
+            #                         review=dealer_review["review"])
+            # if "id" in dealer_review:
+            #     review_obj.id = dealer_review["id"]
+            # if "purchase_date" in dealer_review:
+            #     review_obj.purchase_date = dealer_review["purchase_date"]
+            # if "car_make" in dealer_review:
+            #     review_obj.car_make = dealer_review["car_make"]
+            # if "car_model" in dealer_review:
+            #     review_obj.car_model = dealer_review["car_model"]
+            # if "car_year" in dealer_review:
+            #     review_obj.car_year = dealer_review["car_year"]
+   
             sentiment = analyze_review_sentiments(review_obj.review)
             print(sentiment)
             review_obj.sentiment = sentiment
@@ -307,20 +334,20 @@ def post_request(url, payload, **kwargs):
 
 def analyze_review_sentiments(text):
 
-url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d"
+    url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1e4de4a8-d09f-4a38-9308-313ec974f75d"
 
-api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt"
+    api_key = "zobNkm1knBgIl38HiTHZH-inPDJRd0L31s2Zda80WiRt"
 
-authenticator = IAMAuthenticator(api_key)
+    authenticator = IAMAuthenticator(api_key)
 
-natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
+    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
 
-natural_language_understanding.set_service_url(url)
+    natural_language_understanding.set_service_url(url)
 
-response = natural_language_understanding.analyze( text=text+"hello hello hello",features=Features(sentiment=SentimentOptions(targets=[text+"hello hello hello"]))).get_result()
+    response = natural_language_understanding.analyze( text=text+"hello hello hello",features=Features(sentiment=SentimentOptions(targets=[text+"hello hello hello"]))).get_result()
 
-label=json.dumps(response, indent=2)
+    label=json.dumps(response, indent=2)
 
-label = response['sentiment']['document']['label']
+    label = response['sentiment']['document']['label']
 
-return(label) 
+    return(label) 

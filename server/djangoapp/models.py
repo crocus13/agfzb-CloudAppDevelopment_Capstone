@@ -36,6 +36,7 @@ import json
 
 
 class CarMake(models.Model):
+    id = models.IntegerField(default=1,primary_key=True)
     name = models.CharField(null=False, max_length=100, default='Make') 
     description = models.CharField(max_length=500)
 
@@ -85,7 +86,8 @@ class CarMake(models.Model):
 
 
 class CarModel(models.Model): 
-    id = models.IntegerField(default=1,primary_key=True) name = models.CharField(null=False, max_length=100, default='Car')
+    id = models.IntegerField(default=1,primary_key=True)
+    name = models.CharField(null=False, max_length=100, default='Car')
 
     SEDAN = 'Sedan'
     SUV = 'SUV'

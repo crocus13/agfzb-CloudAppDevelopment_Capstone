@@ -19,8 +19,8 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
-                    <!-- <a class="nav-link" href = "{%url 'djangoapp:add_review'%}">Add Review</a> -->
-                    <a class="nav-link" href="{% url 'djangoapp:post_review' dealer_id %}" >Add review</a>
+                    <!-- <a class="nav-link" href = "{%url 'djangoapp:add_review' id %}">Add Review</a>   -->
+                    <a class="nav-link" href="{% url 'djangoapp:post_review' id %}" >Add review</a> 
 
                 </li>
                
