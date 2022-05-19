@@ -203,8 +203,6 @@ class DealerReview:
         self.review = review
         # Optional attributes
         self.purchase_date = ""
-        # self.purchase_date = purchase_date
-
         self.purchase_make = ""
         self.purchase_model = ""
         self.purchase_year = ""
@@ -227,8 +225,6 @@ class ReviewPost:
         self.purchase = purchase
         self.review = review
         self.purchase_date = ""
-        # self.purchase_date = purchase_date
-
         self.car_make = ""
         self.car_model = ""
         self.car_year = ""
