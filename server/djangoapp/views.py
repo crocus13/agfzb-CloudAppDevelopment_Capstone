@@ -126,12 +126,15 @@ def get_dealer_details(request, id):
         context = {}
         dealer_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/dealership"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+
+
         # print(dealer)
         context["dealer"] = dealer
 
         review_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/get-review"
 
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
+
         print(reviews)
         context["reviews"] = reviews
         return render(request, 'djangoapp/dealer_details.html', context)
@@ -144,6 +147,7 @@ def add_review(request, id):
     context = {}
     dealer_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/dealership"
     dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+
     context["dealer"] = dealer
     if request.method == 'GET':
     # Get cars for the dealer
@@ -176,8 +180,9 @@ def add_review(request, id):
             new_payload["review"] = payload
             review_post_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
             post_request(review_post_url, new_payload, id=id)
-            # return redirect("djangoapp:dealer_details", id=id)
+
     return redirect('djangoapp/dealer_details.html', id=id)
+
 
 
 
@@ -229,4 +234,4 @@ def add_review(request, id):
 #                 context["message"] = "ERROR: Review was not submitted."
 #             else:
 #                 context["message"] = "Review was submited"
-#             return redirect("djangoapp:dealer_details", id=id)
+#     return redirect("djangoapp:dealer_details", id=id)

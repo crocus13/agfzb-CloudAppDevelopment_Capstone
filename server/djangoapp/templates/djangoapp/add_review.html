@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet"> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>-->
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet"/> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script> 
+
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> -->
+
 
 
 </head>
@@ -77,6 +88,7 @@
         </h1>
         
             <form action= "{%url 'djangoapp:add_review' dealer.id %}" method="post">   
+    
                 {% csrf_token %}
 
                 <div class="form-group">
@@ -99,11 +111,14 @@
                     </select>
                 </div>
                 
+
                 <div class="form-group date" data-provide="datepicker">
                     <label for="purchasedate">Select Your Purchase Date:</label>
-                    <input class ="date-own form-control"type="text" name="purchasedate" id="purchasedate">
-                </div>
-
+                    <input class ="date-own form-control"type="text" name="purchasedate" id="purchase_date"placeholder="mm/dd/yyyy">
+                    
+              
+                </div>  
+               
                <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -112,8 +127,9 @@
             $('.date-own').datepicker({
                format: 'mm/dd/yyyy'
              });
-       </script>
- 
+        </script> 
+
+        
     </body>
 </html>
 
