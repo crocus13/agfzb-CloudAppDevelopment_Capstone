@@ -155,7 +155,7 @@ def add_review(request, id):
         print(cars)
         context["cars"] = cars
         return render(request, 'djangoapp/add_review.html', context)
-    elif request.method == 'POST':
+    if request.method == 'POST':
         if request.user.is_authenticated:
             username = request.user.username
             print(request.POST)
@@ -180,9 +180,13 @@ def add_review(request, id):
             new_payload["review"] = payload
             review_post_url = "https://8aa95a23.us-south.apigw.appdomain.cloud/api/post-review"
             post_request(review_post_url, new_payload, id=id)
+            # return redirect('djangoapp/dealer_details.html', id=id)
+            return HttpResponseRedirect('/djangoapp/') 
 
-    return redirect('djangoapp/dealer_details.html', id=id)
+    else:
+        return redirect("djangoapp:dealer_details")
 
+            # return redirect("/djangoapp/dealer_details")
 
 
 
